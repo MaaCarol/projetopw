@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\ProprietarioController;
+use App\Http\Controllers\AnuncioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,29 +19,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// routes/web.php
 
-use App\Http\Controllers\VeiculoController;
-use App\Http\Controllers\ProprietarioController;
-use App\Http\Controllers\AnuncioController;
-
-// Rotas para Veículo
+// Rotas para Veículos
 Route::get('/veiculo/formulario', [VeiculoController::class, 'formulario'])->name('veiculo-formulario');
 Route::post('/veiculo/store', [VeiculoController::class, 'store'])->name('veiculo-store');
 Route::get('/veiculo/listar', [VeiculoController::class, 'listar'])->name('veiculo-listar');
-Route::get('/veiculo/editar/{id}', [VeiculoController::class, 'editar'])->name('veiculo-editar');
-Route::delete('/veiculo/remover/{id}', [VeiculoController::class, 'remover'])->name('veiculo-remover'); // Usando DELETE para remover
+Route::get('/veiculo/remover/{id}', [VeiculoController::class, 'remover'])->name('veiculo-remover'); // Com ID para remover
+Route::get('/veiculo/editar/{id}', [VeiculoController::class, 'editar'])->name('veiculo-editar');   // Com ID para editar
 
-// Rotas para Proprietário (faça o mesmo padrão)
+// Rotas para Proprietários
 Route::get('/proprietario/formulario', [ProprietarioController::class, 'formulario'])->name('proprietario-formulario');
 Route::post('/proprietario/store', [ProprietarioController::class, 'store'])->name('proprietario-store');
 Route::get('/proprietario/listar', [ProprietarioController::class, 'listar'])->name('proprietario-listar');
+Route::get('/proprietario/remover/{id}', [ProprietarioController::class, 'remover'])->name('proprietario-remover');
 Route::get('/proprietario/editar/{id}', [ProprietarioController::class, 'editar'])->name('proprietario-editar');
-Route::delete('/proprietario/remover/{id}', [ProprietarioController::class, 'remover'])->name('proprietario-remover');
 
-// Rotas para Anúncio (faça o mesmo padrão)
+// Rotas para Anúncios
 Route::get('/anuncio/formulario', [AnuncioController::class, 'formulario'])->name('anuncio-formulario');
 Route::post('/anuncio/store', [AnuncioController::class, 'store'])->name('anuncio-store');
 Route::get('/anuncio/listar', [AnuncioController::class, 'listar'])->name('anuncio-listar');
+Route::get('/anuncio/remover/{id}', [AnuncioController::class, 'remover'])->name('anuncio-remover');
 Route::get('/anuncio/editar/{id}', [AnuncioController::class, 'editar'])->name('anuncio-editar');
-Route::delete('/anuncio/remover/{id}', [AnuncioController::class, 'remover'])->name('anuncio-remover');

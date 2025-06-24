@@ -3,68 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Veiculo; // Importe o Model Veiculo
 
 class VeiculoController extends Controller
 {
-    /**
-     * Exibe o formulário para criar um novo veículo.
-     * Corresponde à rota GET /veiculo/formulario
-     *
-     * @return \Illuminate\View\View
-     */
     public function formulario()
     {
         return view('veiculo-formulario');
     }
 
-    /**
-     * Armazena um novo veículo no banco de dados.
-     * Corresponde à rota POST /veiculo/store
-     * (A lógica de salvar será implementada mais tarde)
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     // Lógica para validar e salvar o veículo
-    // }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'marca' => 'required|string|max:255',
+            'modelo' => 'required|string|max:255',
+            'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1), // Ano válido
+            'placa' => 'required|string|max:7|unique:veiculo,placa', // Placa única
+            'cor' => 'required|string|max:255',
+        ], [
+            'marca.required' => 'O campo marca é obrigatório.',
+            'modelo.required' => 'O campo modelo é obrigatório.',
+            'ano.required' => 'O campo ano é obrigatório.',
+            'ano.integer' => 'O campo ano deve ser um número inteiro.',
+            'ano.min' => 'O ano mínimo permitido é 1900.',
+            'ano.max' => 'O ano não pode ser no futuro distante.',
+            'placa.required' => 'O campo placa é obrigatório.',
+            'placa.unique' => 'Esta placa já está cadastrada.',
+            'cor.required' => 'O campo cor é obrigatório.'
+        ]);
 
-    /**
-     * Exibe uma lista de veículos.
-     * Corresponde à rota GET /veiculo/listar
-     * (A lógica de buscar e listar será implementada mais tarde)
-     *
-     * @return \Illuminate\View\View
-     */
-    // public function listar()
-    // {
-    //     // Lógica para buscar os veículos no banco de dados
-    // }
+        Veiculo::create($request->all());
 
-    /**
-     * Exibe o formulário para editar um veículo específico.
-     * Corresponde à rota GET /veiculo/editar/{id}
-     * (A lógica de buscar o veículo para edição será implementada mais tarde)
-     *
-     * @param  int  $id
-     * @return \Illuminate\View\View
-     */
-    // public function editar($id)
-    // {
-    //     // Lógica para buscar o veículo para edição
-    // }
+        return redirect('/veiculo/listar')->with('success', 'Veículo cadastrado com sucesso!');
+    }
 
-    /**
-     * Remove um veículo do banco de dados.
-     * Corresponde à rota DELETE /veiculo/remover/{id}
-     * (A lógica de remover será implementada mais tarde)
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function remover($id)
-    // {
-    //     // Lógica para remover o veículo
-    // }
+    public function listar()
+    {
+        $veiculos = Veiculo::all(); // Busca todos os veículos
+        return view('veiculo-listar', compact('veiculos'));
+    }
+
+    // ... Mantenha os métodos remover e editar por enquanto, não os altere ainda.
 }
