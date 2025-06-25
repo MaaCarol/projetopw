@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Proprietário</title>
     <style>
-        /* Estilos básicos para alertas e formulário */
+        
         body {
             font-family: Arial, sans-serif;
             margin: 20px;

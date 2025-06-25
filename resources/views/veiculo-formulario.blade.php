@@ -26,7 +26,7 @@
     <div class="container">
         <h1>{{ isset($veiculo) ? 'Editar Veículo' : 'Cadastrar Novo Veículo' }}</h1>
 
-        {{-- Bloco para exibir erros de validação --}}
+      
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

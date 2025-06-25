@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Proprietario; // Importe o Model Proprietario
+use App\Models\Proprietario; 
 
 class ProprietarioController extends Controller
 {
@@ -14,12 +14,12 @@ class ProprietarioController extends Controller
 
     public function store(Request $request)
     {
-        // Validação dos dados
+        
         $request->validate([
             'nome' => 'required|string|max:255',
-            'cpf' => 'required|string|max:14|unique:proprietario,cpf', // CPF único na tabela proprietario
+            'cpf' => 'required|string|max:14|unique:proprietario,cpf', 
             'telefone' => 'nullable|string|max:20',
-            'email' => 'required|string|email|max:255|unique:proprietario,email', // Email único
+            'email' => 'required|string|email|max:255|unique:proprietario,email', 
         ], [
             'nome.required' => 'O campo nome é obrigatório.',
             'cpf.required' => 'O campo CPF é obrigatório.',
@@ -29,7 +29,6 @@ class ProprietarioController extends Controller
             'email.unique' => 'Este e-mail já está cadastrado.'
         ]);
 
-        // Cria um novo Proprietario usando os dados validados
         Proprietario::create($request->all());
 
         return redirect('/proprietario/listar')->with('success', 'Proprietário cadastrado com sucesso!');
@@ -37,9 +36,8 @@ class ProprietarioController extends Controller
 
     public function listar()
     {
-        $proprietarios = Proprietario::all(); // Busca todos os proprietários
+        $proprietarios = Proprietario::all(); 
         return view('proprietario-listar', compact('proprietarios'));
     }
 
-    // ... Mantenha os métodos remover e editar por enquanto, não os altere ainda.
 }

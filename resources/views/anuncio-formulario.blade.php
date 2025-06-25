@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ isset($anuncio) ? 'Editar Anúncio' : 'Cadastrar Anúncio' }}</title>
     <style>
-        /* Mantenha os estilos CSS que você já tem ou use um padrão simples para teste */
+      
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
         .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
         h1 { text-align: center; color: #333; }
@@ -47,7 +47,6 @@
             </div>
         @endif
 
-        {{-- Assumindo que você tem uma rota 'anuncio-store' para salvar --}}
         <form action="{{ route('anuncio-store') }}" method="POST">
             @csrf
 
@@ -69,7 +68,7 @@
             <label for="id_proprietario">Proprietário:</label>
             <select id="id_proprietario" name="id_proprietario" required>
                 <option value="">Selecione um Proprietário</option>
-                {{-- Verifica se $proprietarios está definida antes de iterar --}}
+              
                 @isset($proprietarios)
                     @foreach ($proprietarios as $proprietario)
                         <option value="{{ $proprietario->id_proprietario }}"
@@ -83,7 +82,7 @@
             <label for="id_veiculo">Veículo:</label>
             <select id="id_veiculo" name="id_veiculo" required>
                 <option value="">Selecione um Veículo</option>
-                {{-- Verifica se $veiculos está definida antes de iterar --}}
+               
                 @isset($veiculos)
                     @foreach ($veiculos as $veiculo)
                         <option value="{{ $veiculo->id_veiculo }}"

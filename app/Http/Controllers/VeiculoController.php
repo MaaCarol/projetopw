@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\VeiculoModel; // <-- Mude de 'use App\Models\Veiculo;' para 'use App\Models\VeiculoModel;'
+use App\Models\VeiculoModel; 
 
 class VeiculoController extends Controller
 {
@@ -14,12 +14,12 @@ class VeiculoController extends Controller
 
     public function store(Request $dados)
     {
-        // Adicione validação para Veículo
+       
         $dados->validate([
             'marca' => 'required|string|max:255',
             'modelo' => 'required|string|max:255',
-            'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1), // Ano não pode ser muito no futuro
-            'placa' => 'required|string|max:8|unique:veiculo,placa,' . ($dados->id ?? 'NULL') . ',id_veiculo', // Placa única
+            'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1), 
+            'placa' => 'required|string|max:8|unique:veiculo,placa,' . ($dados->id ?? 'NULL') . ',id_veiculo', 
             'cor' => 'required|string|max:50',
         ], [
             'marca.required' => 'O campo marca é obrigatório.',
@@ -34,8 +34,8 @@ class VeiculoController extends Controller
         ]);
 
         if (isset($dados->id) && !empty($dados->id)) {
-            // Lógica de update
-            $veiculo = VeiculoModel::find($dados->id); // <-- Use VeiculoModel
+        
+            $veiculo = VeiculoModel::find($dados->id);
             if ($veiculo) {
                 $veiculo->update($dados->all());
                 return redirect()->route('veiculo-list')->with('success', 'Veículo atualizado com sucesso!');
@@ -43,21 +43,21 @@ class VeiculoController extends Controller
                 return redirect()->route('veiculo-list')->with('error', 'Veículo não encontrado para atualização.');
             }
         } else {
-            // Lógica de criação
-            VeiculoModel::create($dados->all()); // <-- Use VeiculoModel
+            
+            VeiculoModel::create($dados->all()); 
             return redirect()->route('veiculo-list')->with('success', 'Veículo cadastrado com sucesso!');
         }
     }
 
-    public function list() // Método para listar
+    public function list() 
     {
-        $veiculos = VeiculoModel::all(); // <-- Use VeiculoModel
+        $veiculos = VeiculoModel::all();
         return view('veiculo-listar', ['veiculos' => $veiculos]);
     }
 
-    public function remove($id) // Método para remover
+    public function remove($id) 
     {
-        $veiculo = VeiculoModel::destroy($id); // <-- Use VeiculoModel
+        $veiculo = VeiculoModel::destroy($id); 
         if ($veiculo) {
             return redirect()->route('veiculo-list')->with('success', 'Veículo removido com sucesso!');
         } else {
@@ -65,9 +65,9 @@ class VeiculoController extends Controller
         }
     }
 
-    public function editar($id) // Método para editar
+    public function editar($id) 
     {
-        $veiculo = VeiculoModel::find($id); // <-- Use VeiculoModel
+        $veiculo = VeiculoModel::find($id); 
         if (!$veiculo) {
             return redirect()->route('veiculo-list')->with('error', 'Veículo não encontrado para edição.');
         }
