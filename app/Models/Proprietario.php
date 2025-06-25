@@ -9,19 +9,23 @@ class Proprietario extends Model
 {
     use HasFactory;
 
-    // Nome da tabela, se for diferente do plural do nome do modelo (o Laravel pluraliza para 'proprietarios')
-    protected $table = 'proprietario';
+    protected $table = 'proprietario'; // Nome da tabela no banco de dados
+    protected $primaryKey = 'id_proprietario'; // Sua chave primária, se diferente de 'id'
 
-    // Campos que podem ser preenchidos em massa
     protected $fillable = [
         'nome',
         'cpf',
+        'email',
         'telefone',
-        'email'
+        'data_nascimento',
     ];
 
-    // Se sua chave primária não for 'id' ou não for auto-incrementável
-    // protected $primaryKey = 'id_proprietario';
-    // public $incrementing = true; // Ou false se não for auto-incrementável
-    // protected $keyType = 'string'; // Ou int
+    // Relacionamento 1 para N com Anuncio
+    public function anuncios()
+    {
+        // Um Proprietario tem muitos Anuncios
+        // 'Anuncio::class' é o Model relacionado
+        // 'id_proprietario' é a chave estrangeira na tabela 'anuncio' que referencia 'proprietario'
+        return $this->hasMany(Anuncio::class, 'id_proprietario');
+    }
 }
