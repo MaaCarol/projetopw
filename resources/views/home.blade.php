@@ -38,73 +38,55 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color:black; /*cor da letra do botão */
+            color: white; 
             padding: 15px 20px;
             text-decoration: none;
             border-radius: 8px;
             font-size: 1.1em;
             font-weight: 500;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            
             width: 100%;
             max-width: 280px;
             box-sizing: border-box;
         }
-        .button-group a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
+       
 
-        /* Cores dos Botões */
         .btn-cadastro-veiculo {
             background-color: #FF69B4; 
         }
-        .btn-cadastro-veiculo:hover {
-            background-color: #E05A9F; 
-        }
+      
 
         .btn-listar-veiculos {
-            background-color: #FFC0CB; 
-            color: #333; 
+            background-color: #FF69B4; 
+            color: white; 
             border: 1px solid #FF69B4;
         }
-        .btn-listar-veiculos:hover {
-            background-color: #FFB3C2;
-        }
+      
 
         .btn-cadastro-proprietario {
             background-color: #20B2AA;
         }
-        .btn-cadastro-proprietario:hover {
-            background-color: #1A9F97;
-        }
+       
 
         .btn-listar-proprietarios {
-            background-color: #87CEEB; 
-            color: #333; 
+            background-color: #20B2AA; 
+            color: white; 
             border: 1px solid #20B2AA;
         }
-        .btn-listar-proprietarios:hover {
-            background-color: #7BBFEB; 
-        }
-
+      
         .btn-cadastro-anuncio {
             background-color: #FFD700; 
-            color: #333; 
+            color: black; 
         }
-        .btn-cadastro-anuncio:hover {
-            background-color: #E0BF00; 
-        }
+      
 
         .btn-listar-anuncios {
-            background-color: #FFFACD; 
-            color: #333; 
+            background-color: #FFD700; 
+            color: black; 
             border: 1px solid #FFD700; 
         }
-        .btn-listar-anuncios:hover {
-            background-color: #FFF5A5; 
-        }
-
-    
+       
+        
         .footer-name {
             text-align: center;
             margin-top: 50px; 
@@ -119,7 +101,7 @@
             background-color: transparent; 
         }
 
-      
+        
         @media (max-width: 600px) {
             .button-group {
                 grid-template-columns: 1fr; 

@@ -10,7 +10,7 @@
         .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
         h1 { text-align: center; color: #333; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], textarea, input[type="number"], input[type="date"], select { /* Adicionado select e input type="date" */
+        input[type="text"], textarea, input[type="number"], input[type="date"], select { 
             width: calc(100% - 22px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;
         }
         button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
